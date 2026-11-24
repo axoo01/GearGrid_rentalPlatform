@@ -4,6 +4,24 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <NoWarn>NU1902;NU1903</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Account\" />
+    <Folder Include="Pages\Admin\" />
+    <Folder Include="Pages\Browse\" />
+    <Folder Include="Pages\Renter\" />
+    <Folder Include="Pages\Provider\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>

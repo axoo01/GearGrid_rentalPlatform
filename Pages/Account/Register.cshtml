@@ -1,0 +1,57 @@
+@page
+@model GearGrid.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Create your account";
+    ViewData["AccountModal"] = true;
+}
+
+<section class="account-page">
+    <div class="glass-card account-card">
+        <a class="account-modal-close" asp-page="/Index" aria-label="Close registration">&times;</a>
+        <p class="eyebrow">Join GearGrid</p>
+        <h1>Create your account</h1>
+        <p class="account-intro">Rent equipment or share your gear with the community.</p>
+        <form method="post" class="account-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary" role="alert"></div>
+            <div class="form-field">
+                <label asp-for="Input.FullName">Full name</label>
+                <input asp-for="Input.FullName" class="glass-input" autocomplete="name" />
+                <span asp-validation-for="Input.FullName" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Email">Email</label>
+                <input asp-for="Input.Email" class="glass-input" autocomplete="email" />
+                <span asp-validation-for="Input.Email" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.PhoneNumber">Phone number</label>
+                <input asp-for="Input.PhoneNumber" class="glass-input" autocomplete="tel" />
+                <span asp-validation-for="Input.PhoneNumber" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Password">Password</label>
+                <input asp-for="Input.Password" class="glass-input" autocomplete="new-password" />
+                <span asp-validation-for="Input.Password" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.ConfirmPassword">Confirm password</label>
+                <input asp-for="Input.ConfirmPassword" class="glass-input" autocomplete="new-password" />
+                <span asp-validation-for="Input.ConfirmPassword" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Role">I want to</label>
+                <select asp-for="Input.Role" class="glass-input">
+                    <option value="Renter">Rent equipment</option>
+                    <option value="Provider">List equipment as a provider</option>
+                </select>
+                <span asp-validation-for="Input.Role" class="field-error"></span>
+            </div>
+            <button type="submit" class="glass-btn glass-btn-primary account-submit">Create account</button>
+        </form>
+        <p class="account-switch">Already have an account? <a asp-page="/Account/Login">Log in</a></p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,110 @@
+@model GearGrid.Components.HomepageContentViewModel
+
+<section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow">GearGrid. Rental Made Simple</p>
+    <h1 id="hero-title">Rent what you need<br /><span>with zero hassle.</span></h1>
+    <p class="hero-copy">Discover reliable equipment from local providers to suit your next event, project, or production.</p>
+    <form method="get" asp-page="/Browse" class="glass-search" role="search">
+        <label class="visually-hidden" for="searchTerm">What equipment are you looking for?</label>
+        <input class="glass-input" id="searchTerm" name="searchTerm" type="search" placeholder="Try speakers, a tent, or a camera..." />
+        <button class="glass-btn glass-btn-primary" type="submit">Explore equipment</button>
+    </form>
+</section>
+
+<section class="section-block" aria-labelledby="featured-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Ready to rent</p>
+            <h2 id="featured-title">Featured rentals</h2>
+        </div>
+        <p>Fresh finds from GearGrid providers.</p>
+    </div>
+    @if (Model.FeaturedEquipment.Count == 0)
+    {
+        <div class="glass-card listing-empty">
+            @if (!Model.HasEquipmentListings)
+            {
+                <h3>New listings arriving soon</h3>
+                <p>Be among the first to share equipment with your community.</p>
+                <a class="glass-btn glass-btn-primary" asp-page="/Provider">List your equipment</a>
+            }
+            else
+            {
+                <h3>No available rentals right now</h3>
+                <p>Check back soon for equipment available to book.</p>
+                <a class="glass-btn" asp-page="/Browse">Browse equipment</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="featured-grid">
+            @foreach (var equipment in Model.FeaturedEquipment)
+            {
+                <article class="glass-card rental-card">
+                    @if (!string.IsNullOrWhiteSpace(equipment.ImageUrl))
+                    {
+                        <div class="rental-image">
+                            <img src="@equipment.ImageUrl" alt="@equipment.Name" loading="lazy" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="rental-image rental-image-fallback" aria-hidden="true">
+                            <span class="fallback-icon">GG</span>
+                        </div>
+                    }
+                    <div class="rental-details">
+                        <span class="category-pill">@equipment.Category.CategoryName</span>
+                        <h3>@equipment.Name</h3>
+                        <p class="rental-provider">Provided by @equipment.Company.CompanyName</p>
+                        <div class="rental-card-footer">
+                            <p class="rental-rate">@equipment.DailyRate.ToString("C") <span>/ day</span></p>
+                            <a class="glass-btn glass-btn-primary" asp-page="/Browse">View &amp; Book</a>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</section>
+
+<section class="section-block" aria-labelledby="how-it-works-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Simple from start to finish</p>
+            <h2 id="how-it-works-title">How GearGrid works</h2>
+        </div>
+        <p>One place for renters and equipment providers.</p>
+    </div>
+    <div class="steps-grid">
+        <article class="glass-card step-card">
+            <div class="step-number">01 · DISCOVER</div>
+            <h3>Find your equipment</h3>
+            <p>Renters browse categories and compare gear from local providers.</p>
+        </article>
+        <article class="glass-card step-card">
+            <div class="step-number">02 · BOOK</div>
+            <h3>Request your rental</h3>
+            <p>Choose your dates and quantity, then send a clear rental request.</p>
+        </article>
+        <article class="glass-card step-card">
+            <div class="step-number">03 · SHARE</div>
+            <h3>Put great gear to work</h3>
+            <p>Providers list equipment and manage requests; renters get ready for the big day.</p>
+        </article>
+    </div>
+</section>
+
+<section class="section-block provider-prompt" aria-labelledby="provider-prompt-title">
+    <details class="glass-card provider-card">
+        <summary id="provider-prompt-title">
+            <span>Want to become a Provider?</span>
+            <span class="provider-toggle" aria-hidden="true">+</span>
+        </summary>
+        <div class="provider-card-content">
+            <p>Share your equipment with people who need it. Create your provider account and get your listings on GearGrid.</p>
+            <a class="glass-btn glass-btn-primary" asp-page="/Account/Register">Join as a Provider</a>
+        </div>
+    </details>
+</section>

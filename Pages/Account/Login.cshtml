@@ -1,0 +1,34 @@
+@page
+@model GearGrid.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Log in";
+    ViewData["AccountModal"] = true;
+}
+
+<section class="account-page">
+    <div class="glass-card account-card account-card-compact">
+        <a class="account-modal-close" asp-page="/Index" aria-label="Close login">&times;</a>
+        <p class="eyebrow">Welcome back</p>
+        <h1>Log in to GearGrid</h1>
+        <p class="account-intro">Pick up where you left off.</p>
+        <form method="post" asp-route-returnUrl="@Model.ReturnUrl" class="account-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary" role="alert"></div>
+            <div class="form-field">
+                <label asp-for="Input.Email">Email</label>
+                <input asp-for="Input.Email" class="glass-input" autocomplete="email" />
+                <span asp-validation-for="Input.Email" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Password">Password</label>
+                <input asp-for="Input.Password" class="glass-input" autocomplete="current-password" />
+                <span asp-validation-for="Input.Password" class="field-error"></span>
+            </div>
+            <button type="submit" class="glass-btn glass-btn-primary account-submit">Log in</button>
+        </form>
+        <p class="account-switch">New to GearGrid? <a asp-page="/Account/Register">Create an account</a></p>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

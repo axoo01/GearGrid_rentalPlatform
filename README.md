@@ -14,9 +14,6 @@ GearGrid is a multi-provider equipment and event-essentials rental platform buil
 
 - ASP.NET Core 10.0 (Razor Pages)
 - Entity Framework Core 10.0 (Code-First)
-- SQL Server
-- Cookie Authentication
-- Custom Liquid Morphism UI
 
 ## Getting Started
 

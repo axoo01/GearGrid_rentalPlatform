@@ -9,6 +9,11 @@ This document is the team’s source of truth for GearGrid’s application struc
 - SQL Server database: `GearGridDB`.
 - NuGet warnings `NU1902;NU1903` are suppressed in `GearGrid.csproj`.
 
+## Branch Baseline
+
+- `main` is the repository's default and integration branch.
+- Create new feature branches from the latest `main` branch.
+
 ## Folder Structure
 
 - `Models/`: Six domain entities — `User`, `Company`, `Category`, `Equipment`, `RentalOrder`, and `RentalAgreement`.

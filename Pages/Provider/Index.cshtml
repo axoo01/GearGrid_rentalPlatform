@@ -1,0 +1,38 @@
+﻿@page
+@model GearGrid.Pages.Provider.IndexModel
+@{
+    ViewData["Title"] = "Provider dashboard";
+}
+
+<section class="section-block">
+    <p class="eyebrow">Provider dashboard</p>
+    <h1>@Model.Company.CompanyName</h1>
+
+    <div class="glass-card" style="padding: 1.25rem; margin: 1rem 0;">
+        @switch (Model.Company.VerificationStatus)
+        {
+            case "Pending":
+                <strong>Pending Admin Review.</strong>
+                <p>You can add equipment once an admin approves your company.</p>
+                break;
+            case "Approved":
+                <strong>Approved.</strong>
+                <p>Your company is live and visible to renters.</p>
+                break;
+            case "Rejected":
+                <strong>Rejected.</strong>
+                <p>Reason: @Model.Company.AdminNotes</p>
+                break;
+            case "Suspended":
+                <strong>Suspended.</strong>
+                <p>Please contact the platform admin.</p>
+                break;
+        }
+    </div>
+
+    @if (Model.Company.VerificationStatus == "Approved")
+    {
+        <a asp-page="/Provider/Equipment/Index" class="glass-btn glass-btn-primary">Manage equipment</a>
+        <a asp-page="/Provider/Orders/Index" class="glass-btn">Incoming orders</a>
+    }
+</section>

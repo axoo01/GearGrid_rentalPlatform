@@ -1,0 +1,65 @@
+﻿@page
+@model GearGrid.Pages.Provider.CompanySetupModel
+@{
+    ViewData["Title"] = "Set up your company";
+}
+
+<section class="account-page">
+    <div class="glass-card account-card">
+        <p class="eyebrow">Provider setup</p>
+        <h1>Set up your company</h1>
+        <p class="account-intro">An admin will review your details before your company goes live.</p>
+
+        <form method="post" class="account-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary" role="alert"></div>
+
+            <div class="form-field">
+                <label asp-for="Input.CompanyName"></label>
+                <input asp-for="Input.CompanyName" class="glass-input" />
+                <span asp-validation-for="Input.CompanyName" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.RegistrationNumber"></label>
+                <input asp-for="Input.RegistrationNumber" class="glass-input" />
+                <span asp-validation-for="Input.RegistrationNumber" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Description"></label>
+                <textarea asp-for="Input.Description" class="glass-input" rows="3"></textarea>
+                <span asp-validation-for="Input.Description" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.BusinessPhone"></label>
+                <input asp-for="Input.BusinessPhone" class="glass-input" />
+                <span asp-validation-for="Input.BusinessPhone" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.BusinessEmail"></label>
+                <input asp-for="Input.BusinessEmail" class="glass-input" />
+                <span asp-validation-for="Input.BusinessEmail" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.City"></label>
+                <input asp-for="Input.City" class="glass-input" />
+                <span asp-validation-for="Input.City" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.PhysicalAddress"></label>
+                <input asp-for="Input.PhysicalAddress" class="glass-input" />
+                <span asp-validation-for="Input.PhysicalAddress" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.DefaultTermsAndConditions"></label>
+                <textarea asp-for="Input.DefaultTermsAndConditions" class="glass-input" rows="6"
+                          placeholder="Late-return penalties, damage liability, etc."></textarea>
+                <span asp-validation-for="Input.DefaultTermsAndConditions" class="field-error"></span>
+            </div>
+
+            <button type="submit" class="glass-btn glass-btn-primary account-submit">Submit for review</button>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

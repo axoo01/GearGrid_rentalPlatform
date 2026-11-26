@@ -15,7 +15,7 @@
             <a class="brand" asp-page="/Index" aria-label="GearGrid home">Gear<span>Grid</span></a>
             <div class="desktop-nav">
                 <a asp-page="/Browse">Browse</a>
-                <a asp-page="/Provider">List Equipment</a>
+                <a asp-page="/Provider/Index">List Equipment</a>
                 <a asp-page="/Renter">My Rentals</a>
             </div>
             <div class="nav-account">
@@ -36,7 +36,7 @@
                 <summary aria-label="Open navigation menu">Menu</summary>
                 <div>
                     <a asp-page="/Browse">Browse</a>
-                    <a asp-page="/Provider">List Equipment</a>
+                    <a asp-page="/Provider/Index">List Equipment</a>
                     <a asp-page="/Renter">My Rentals</a>
                     @if (User.Identity?.IsAuthenticated == true)
                     {

@@ -1,0 +1,86 @@
+@page "{id:int}"
+@model GearGrid.Pages.Provider.EquipmentPages.EditModel
+@{
+    ViewData["Title"] = "Edit equipment";
+}
+
+<section class="account-page">
+    <div class="glass-card account-card">
+        <p class="eyebrow">Provider</p>
+        <h1>Edit equipment</h1>
+
+        @if (Model.RentedUnits > 0)
+        {
+            <p class="account-intro">@Model.RentedUnits unit(s) are currently rented out.</p>
+        }
+
+        <form method="post" enctype="multipart/form-data" class="account-form">
+            <div asp-validation-summary="ModelOnly" class="validation-summary" role="alert"></div>
+
+            <div class="form-field">
+                <label asp-for="Input.CategoryId"></label>
+                <select asp-for="Input.CategoryId" asp-items="Model.Categories" class="glass-input"></select>
+                <span asp-validation-for="Input.CategoryId" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="glass-input" />
+                <span asp-validation-for="Input.Name" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.SerialOrAssetCode"></label>
+                <input asp-for="Input.SerialOrAssetCode" class="glass-input" />
+                <span asp-validation-for="Input.SerialOrAssetCode" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Description"></label>
+                <textarea asp-for="Input.Description" class="glass-input" rows="3"></textarea>
+                <span asp-validation-for="Input.Description" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.DailyRate"></label>
+                <input asp-for="Input.DailyRate" class="glass-input" />
+                <span asp-validation-for="Input.DailyRate" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.SecurityDeposit"></label>
+                <input asp-for="Input.SecurityDeposit" class="glass-input" />
+                <span asp-validation-for="Input.SecurityDeposit" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.TotalQuantity"></label>
+                <input asp-for="Input.TotalQuantity" class="glass-input" />
+                <span asp-validation-for="Input.TotalQuantity" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Status"></label>
+                <select asp-for="Input.Status" class="glass-input">
+                    <option value="Available">Available</option>
+                    <option value="Maintenance">Maintenance (hidden from renters)</option>
+                </select>
+                <span asp-validation-for="Input.Status" class="field-error"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.SpecificTerms"></label>
+                <textarea asp-for="Input.SpecificTerms" class="glass-input" rows="3"></textarea>
+            </div>
+            <div class="form-field">
+                <label for="Image">Replace photo (optional)</label>
+                @if (!string.IsNullOrEmpty(Model.CurrentImageUrl))
+                {
+                    <img src="@Model.CurrentImageUrl" alt="Current photo"
+                         style="width: 120px; height: 90px; object-fit: cover; border-radius: 8px; margin-bottom: .5rem;" />
+                }
+                <input type="file" id="Image" name="Image" class="glass-input" accept=".jpg,.jpeg,.png,.webp" />
+                <span asp-validation-for="Image" class="field-error"></span>
+            </div>
+
+            <button type="submit" class="glass-btn glass-btn-primary account-submit">Save changes</button>
+            <p class="account-switch"><a asp-page="/Provider/Equipment/Index">Cancel</a></p>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

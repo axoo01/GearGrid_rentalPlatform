@@ -1,0 +1,65 @@
+@page
+@model GearGrid.Pages.Provider.EquipmentPages.IndexModel
+@{
+    ViewData["Title"] = "My equipment";
+}
+
+<section class="section-block">
+    <p class="eyebrow">Provider</p>
+    <h1>My equipment</h1>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="glass-card" style="padding: 1rem; margin: 1rem 0;">@Model.Message</div>
+    }
+
+    <p>
+        <a asp-page="/Provider/Equipment/Create" class="glass-btn glass-btn-primary">Add equipment</a>
+        <a asp-page="/Provider/Index" class="glass-btn">Back to dashboard</a>
+    </p>
+
+    @if (!Model.Items.Any())
+    {
+        <div class="glass-card" style="padding: 1.25rem;">You haven't added any equipment yet.</div>
+    }
+    else
+    {
+        <div class="glass-card" style="padding: 1rem; overflow-x: auto;">
+            <table style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Daily rate</th>
+                        <th>Available / Total</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="@item.ImageUrl" alt="@item.Name" style="width: 64px; height: 48px; object-fit: cover; border-radius: 8px;" />
+                            }
+                        </td>
+                        <td>@item.Name<br /><small>@item.SerialOrAssetCode</small></td>
+                        <td>@item.Category.CategoryName</td>
+                        <td>@item.DailyRate.ToString("N0")</td>
+                        <td>@item.AvailableQuantity / @item.TotalQuantity</td>
+                        <td>@item.Status</td>
+                        <td>
+                            <a asp-page="/Provider/Equipment/Edit" asp-route-id="@item.EquipmentId">Edit</a> |
+                            <a asp-page="/Provider/Equipment/Delete" asp-route-id="@item.EquipmentId">Delete</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
